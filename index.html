@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Google Visualization API Sample</title>
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load('visualization', '1', {packages: ['motionchart']});
+     
+        
+        function drawVisualization() {
+      // To see the data that this visualization uses, browse to
+      // http://spreadsheets.google.com/ccc?key=pCQbetd-CptGXxxQIG7VFIQ  
+      var query = new google.visualization.Query(
+          'https://spreadsheets.google.com/ccc?key=0ApnB0zOPNpxUdHpfRjhkV2Z0WWJtVEJMSUlkMzZTSmc&hl=en');
+      
+      
+      
+      // Send the query with a callback function.
+      query.send(handleQueryResponse);
+    }
+     
+    function handleQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+    var data = response.getDataTable();
+    var motionchart = new google.visualization.MotionChart(
+          document.getElementById('visualization'));
+      motionchart.draw(data, {'width': 800, 'height': 400});
+    }
+     
+        google.setOnLoadCallback(drawVisualization);
+
+    google.setOnLoadCallback(drawVisualization);
+
+    function changeTimeUnits(value) {
+      timeUnits = parseInt(value, 10);  
+      drawVisualization();
+    }
+    
+  </script>
+</head>
+<body style="font-family: Arial;border: 0 none;">
+    <div style="margin-bottom: 10px; padding: 5px; border: 1px solid gray; background-color: buttonface;">
+      <h1>Visualization of Rain Fall in Karnataka</h1>
+      </div>
+    <div id="visualization" style="width: 800px; height: 400px;"></div>
+    <div style="margin-bottom: 10px; padding: 5px; border: 1px solid gray; background-color: buttonface;">
+    	<a href="http://thejeshgn.com/2010/09/07/notes-on-rainfall-data-visualization-of-karnataka/">Detailed Blog post.</a>  
+    </div>
+  </body>
+<body style="font-family: Arial;border: 0 none;">
+</body>
+</html>
+​
